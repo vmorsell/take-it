@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Take It — Avanza top-of-book auto-price",
+  "description": "Continuously syncs the price input on Avanza order forms to the top of the opposite side of the order book.",
+  "version": "0.1.0",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.avanza.se/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
