@@ -22,8 +22,7 @@ export function readTopOfBook(): BookSnapshot {
   };
 }
 
-// Avanza suffixes a "*" on prices quoted by the Market Maker. Strip it
-// before parsing — parseSv only knows the Swedish number grammar.
+// Avanza suffixes "*" on Market-Maker-quoted prices; strip before parseSv.
 function stripMmMarker(input: string | null | undefined): string | null {
   if (input == null) return null;
   return input.replace(/\*/g, "");
