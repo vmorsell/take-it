@@ -17,9 +17,15 @@ export function readTopOfBook(): BookSnapshot {
   const sellEl = topRow.querySelector(SEL.bookPriceSell);
 
   return {
-    bestBid: parseSv(buyEl?.textContent ?? null),
-    bestAsk: parseSv(sellEl?.textContent ?? null),
+    bestBid: parseSv(stripMmMarker(buyEl?.textContent)),
+    bestAsk: parseSv(stripMmMarker(sellEl?.textContent)),
   };
+}
+
+// Avanza suffixes "*" on Market-Maker-quoted prices; strip before parseSv.
+function stripMmMarker(input: string | null | undefined): string | null {
+  if (input == null) return null;
+  return input.replace(/\*/g, "");
 }
 
 export interface BookObserver {
